@@ -21,6 +21,10 @@ def download():
     stream.download(output_path='downloads', filename='downloaded')
     return send_file('downloads/downloaded', as_attachment=True)
 
+@app.errorhandler(405)
+def method_not_allowed(e):
+    return render_template('405.html'), 405
+
 if __name__ == "__main__":
     if not os.path.exists('downloads'):
         os.makedirs('downloads')
