@@ -26,50 +26,5 @@
             </form>
         </div>
     </main>
-    <script>
-        document.getElementById('downloadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const videoUrl = document.getElementById('videoUrl').value;
-            const format = document.getElementById('format').value;
-            const resultDiv = document.getElementById('result');
-            const downloadBtn = document.querySelector('.download-btn');
-            
-            // Validação básica da URL
-            if (!videoUrl.includes('youtube.com/') && !videoUrl.includes('youtu.be/')) {
-                resultDiv.style.display = 'block';
-                resultDiv.innerHTML = 'Por favor, insira um link válido do YouTube';
-                return;
-            }
-            
-            // Simular processo de download
-            downloadBtn.classList.add('loading');
-            downloadBtn.innerHTML = 'Processando...';
-            
-            // Em um caso real, aqui você faria uma requisição para seu backend
-            // que lidaria com o download real usando uma biblioteca como youtube-dl
-            setTimeout(() => {
-                resultDiv.style.display = 'block';
-                downloadBtn.classList.remove('loading');
-                downloadBtn.innerHTML = 'Baixar';
-                
-                // Simulação de resposta
-                resultDiv.innerHTML = `
-                    <p>Para realizar o download real, você precisaria:</p>
-                    <ol style="margin-left: 20px; margin-top: 10px;">
-                        <li>Implementar um backend (Node.js, Python, PHP, etc.)</li>
-                        <li>Usar uma biblioteca como youtube-dl ou similar</li>
-                        <li>Lidar com as questões legais e de direitos autorais</li>
-                        <li>Implementar proteções contra uso excessivo</li>
-                    </ol>
-                `;
-            }, 2000);
-        });
-        
-        // Limpar resultado quando a URL é alterada
-        document.getElementById('videoUrl').addEventListener('input', function() {
-            document.getElementById('result').style.display = 'none';
-        });
-        </script>
 </body>
 </html>

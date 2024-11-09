@@ -75,28 +75,3 @@ input[type="text"]{
 .download-btn:hover{
     background-color: var(--color3);
 }
-
-.result {
-    margin-top: 20px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    display: none;
-}
-
-.disclaimer {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0.8em;
-    color: #aaa;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.loading {
-    animation: pulse 1.5s infinite;
-}
