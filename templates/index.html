@@ -1,24 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Downloader de Vídeos</title>
+    <title>YouTube Downloader</title>
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/youtube/default.svg" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
-        <h1>Downloader de Vídeos do YouTube</h1>
-        <form method="POST">
-            <label for="url">Cole a URL do vídeo aqui:</label>
-            <input type="text" id="url" name="url" required>
-            <label for="format">Selecione o formato:</label>
-            <select id="format" name="format">
-                <option value="mp4">MP4</option>
-                <option value="mp3">MP3</option>
-            </select>
-            <button type="submit">Baixar</button>
-        </form>
-    </div>
+    <main>
+        <h1>
+            <svg width="30" height="30" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px">
+                <path fill="#FF0000" d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            YouTube Downloader
+        </h1>
+        <div id="container">
+            <form method="POST" class="youtube-form">
+                <input type="text" id="url" name="url" required placeholder="Paste video URL here">
+                <select id="format" name="format">
+                    <option value="mp4">MP4 - Video</option>
+                    <option value="mp3">MP3 - Audio</option>
+                </select>
+                <button type="submit" class="download-btn">Download</button>
+            </form>
+        </div>
+    </main>
+    <script>
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const videoUrl = document.getElementById('videoUrl').value;
+            const format = document.getElementById('format').value;
+            const resultDiv = document.getElementById('result');
+            const downloadBtn = document.querySelector('.download-btn');
+            
+            // Validação básica da URL
+            if (!videoUrl.includes('youtube.com/') && !videoUrl.includes('youtu.be/')) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = 'Por favor, insira um link válido do YouTube';
+                return;
+            }
+            
+            // Simular processo de download
+            downloadBtn.classList.add('loading');
+            downloadBtn.innerHTML = 'Processando...';
+            
+            // Em um caso real, aqui você faria uma requisição para seu backend
+            // que lidaria com o download real usando uma biblioteca como youtube-dl
+            setTimeout(() => {
+                resultDiv.style.display = 'block';
+                downloadBtn.classList.remove('loading');
+                downloadBtn.innerHTML = 'Baixar';
+                
+                // Simulação de resposta
+                resultDiv.innerHTML = `
+                    <p>Para realizar o download real, você precisaria:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Implementar um backend (Node.js, Python, PHP, etc.)</li>
+                        <li>Usar uma biblioteca como youtube-dl ou similar</li>
+                        <li>Lidar com as questões legais e de direitos autorais</li>
+                        <li>Implementar proteções contra uso excessivo</li>
+                    </ol>
+                `;
+            }, 2000);
+        });
+        
+        // Limpar resultado quando a URL é alterada
+        document.getElementById('videoUrl').addEventListener('input', function() {
+            document.getElementById('result').style.display = 'none';
+        });
+        </script>
 </body>
 </html>
